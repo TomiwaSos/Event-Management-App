@@ -5,7 +5,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item active">
+      <li class="nav-item">
         <%= link_to 'Home', root_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
@@ -21,7 +21,7 @@
         <a class="nav-link" href="https://support.melbourne.co.uk/">Support</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Login / Register</a>
+        <%= link_to 'Sign Up / Log In', users_path, class: "nav-link" %>
       </li>
     </ul>
   </div>
