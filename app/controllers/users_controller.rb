@@ -19,6 +19,23 @@ class UsersController < ApplicationController
     end
   end
 
+  def login     
+    user = User.find_by(email: params[:email].downcase)
+    if user && user.authenticate(params[:password])
+        session[:user_id] = user.id
+        redirect_to root_path
+    else
+        flash.now[:alert] = 'There was something wrong with your log in details'
+        render 'new'
+    end
+  end
+
+  def logout
+    session[:user_id] = nil
+    flash[:notice] = 'Logged out'
+    redirect_to root_path
+  end
+
   def edit
     @user = User.find(params[:id])
   end
