@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_18_155649) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_21_204003) do
+  create_table "events", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "status_id"
+    t.datetime "resolved_at"
+    t.integer "resolved_by"
+    t.boolean "resolved"
+    t.integer "created_by"
+    t.boolean "active"
+    t.datetime "active_from"
+    t.datetime "active_to"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 # Could not dump table "users" because of following StandardError
 #   Unknown type 'encrypted_password' for column 'password_digest'
 

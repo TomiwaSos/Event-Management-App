@@ -1,0 +1,30 @@
+<h1 class="text-center mt-4"> <%= @event.title %> </h1>
+
+<div class="container">
+  <div class="row mt-2">
+    <div class= "col-2">
+      Description :
+    </div>
+    <div class= "col-10">
+      <%= @event.description %>
+    </div>
+  </div>
+
+  <div class="row mt-2">
+    <div class= "col-2">
+      Active from :
+    </div>
+    <div class= "col-10">
+      <%= @event.active_from %>
+    </div>
+  </div>
+
+  <div class="row mt-2">
+    <div class= "col-2">
+      Active To :
+    </div>
+    <div class= "col-10">
+      <%= @event.active_to %>
+    </div>
+  </div>
+</div>
