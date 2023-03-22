@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   delete 'logout', to: 'users#logout'
   resources :users , except: [:new]
   resources :events
+  resources :statuses
 end

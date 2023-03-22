@@ -1,0 +1,32 @@
+<h1 class="text-center mt-4"> Available Status </h1>
+<div class="container">
+  <div class="row justify-content-end">
+    <%= link_to 'New Status', new_status_path, class: "btn btn-outline-primary mx-2 btn-sm my-2 col-1" %>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Namr</th>
+            <th scope="col">Colour</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @statuses.each do |status| %>
+            <tr>
+              <td><%= status.name %></td>
+              <td><%= status.colour %></td>
+              <td>
+                <%= link_to 'Show', status_path(status), class: "btn btn-outline-primary mx-2 btn-sm my-2" %>
+                <%= link_to 'Edit', edit_status_path(status), class: "btn btn-outline-primary mx-2 btn-sm my-2" %>
+                <%=  button_to 'Destroy', status_path(status), method: :delete,  data: {confirm: 'Are you sure?'}, class: "btn btn-outline-danger mx-2 btn-sm my-2" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

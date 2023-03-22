@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row justify-content-center mt-3">
+    <div class="col-10">
+      <%= render "shared/errors", obj: @status %>
+      <%= form_with(model: @status, class:"",local: true)  do |f| %>
+        <div class="form-group row">
+          <div class= "col-2">
+            <%= f.label :name ,class: "col-form-label" %>
+          </div>
+          <div class= "col-10">
+            <%= f.text_field :name, class:"form-control col-9" , placeholder: "Enter a name", required: true %>
+          </div>
+        </div>
+
+        <div class="form-group row mt-2">
+          <div class= "col-2">
+            <%= f.label :colour, class: "col-2 col-form-label" %>
+          </div>
+          <div class= "col-10">
+            <%= f.select(
+              :colour,
+              options_for_select([['Blue', "primary"], ['Red', "danger"], ['Yellow', "warning"], ['Grey', "primary"], ['Green', "success"]], @status.colour),
+              {required: true, include_blank: true},
+              {class: "form-control"}
+            )%>
+          </div>
+
+        <div class="form-group d-flex justify-content-center">
+          <%= link_to 'Back', statuses_path, class: "btn btn-outline-secondary mx-2 btn-sm my-2" %>
+          <%= f.submit("Create Status", class: "btn btn-outline-success btn-sm my-2") %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

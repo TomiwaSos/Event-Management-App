@@ -11,7 +11,6 @@ class CreateEvents < ActiveRecord::Migration[7.0]
       t.boolean :active
       t.datetime :active_from
       t.datetime :active_to
-
       t.timestamps
     end
   end
