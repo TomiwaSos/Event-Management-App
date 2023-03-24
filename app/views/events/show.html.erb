@@ -1,12 +1,21 @@
 <h1 class="text-center mt-4"> <%= @event.title %> </h1>
 
-<div class="container">
+<div class="container p-3">
   <div class="row mt-2">
     <div class= "col-2">
       Description :
     </div>
     <div class= "col-10">
       <%= @event.description %>
+    </div>
+  </div>
+
+  <div class="row mt-2">
+    <div class= "col-2">
+      Description :
+    </div>
+    <div class= "col-10">
+      <%= Status.find(@event.status_id).name %>
     </div>
   </div>
 
@@ -27,4 +36,25 @@
       <%= @event.active_to %>
     </div>
   </div>
+
+  <div class="row mt-2">
+    <div class= "col-2">
+      Last Updated :
+    </div>
+    <div class= "col-10">
+      <%= @event.updated_at %>
+    </div>
+  </div>
 </div>
+
+<div class="row justify-content-center"> 
+  <%= link_to 'Back', events_path, class: "btn btn-outline-secondary mx-2 btn-sm my-2 col-1" %>
+  <%= link_to 'New Comment', new_event_comment_path(@event.id), class: "btn btn-outline-primary mx-2 btn-sm my-2 col-1" %>
+</div>
+
+
+<% if @event.comments.present? %>
+  <div class="container p-3">
+  <%= render "events/partials/comment_section", comments: @event.comments %>
+  </div>
+<% end %>

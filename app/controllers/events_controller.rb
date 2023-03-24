@@ -28,13 +28,13 @@ class EventsController < ApplicationController
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
-    redirect_to root_path, :notice => "Successfully destroyed user."
+    redirect_to root_path, :notice => "Successfully destroyed event."
   end
 
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
-      redirect_to root_path, :notice  => "Successfully updated user."
+      redirect_to root_path, :notice  => "Successfully updated event."
     else
       render :action => 'edit'
     end

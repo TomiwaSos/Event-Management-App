@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row justify-content-center mt-3">
+    <div class="col-10">
+      <%= render "shared/errors", obj: @comment %>
+      <%= form_with(model: [@event, @comment], class:"", local: true)  do |f| %>
+        <%= f.hidden_field :event_id, value: params[:event_id] %>
+        <%= f.hidden_field :author_id, value: current_user.id %>
+
+        <div class="form-group row">
+          <div class= "col-2">
+            <%= f.label :description ,class: "col-form-label" %>
+          </div>
+          <div class= "col-10">
+            <%= f.text_field :description, class:"form-control col-9" , placeholder: "Enter a name", required: true %>
+          </div>
+        </div>
+
+        <div class="form-group row mt-2">
+          <div class= "col-2">
+            <%= f.label :status_id, class: "col-2 col-form-label" %>
+          </div>
+          <div class= "col-10">
+            <%= f.select(
+              :status_id,
+              options_for_select( Status.all.collect {|a| [a.name, a.id]}, Event.find_by(id: params[:event_id]).status_id),
+              {required: true, include_blank: true},
+              {class: "form-control"}
+            )%>
+          </div>
+        </div>
+
+        <div class="form-group d-flex justify-content-center">
+          <%= link_to 'Back', event_path(id: params[:event_id]), class: "btn btn-outline-secondary mx-2 btn-sm my-2" %>
+          <%= f.submit("Create Comment", class: "btn btn-outline-success btn-sm my-2") %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
