@@ -57,7 +57,11 @@
 
         <div class="form-group d-flex justify-content-center">
           <%= link_to 'Back', root_path, class: "btn btn-outline-secondary mx-2 btn-sm my-2" %>
-          <%= f.submit("Create Event", class: "btn btn-outline-success btn-sm my-2") %>
+          <% if @event.new_record? %>
+            <%= f.submit("Create Event", class: "btn btn-outline-success btn-sm my-2") %>
+          <% else %>
+            <%= f.submit("Edit Event", class: "btn btn-outline-success btn-sm my-2") %>
+          <% end %>
         </div>
 
       <% end %>
