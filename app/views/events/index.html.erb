@@ -26,8 +26,8 @@
             <tr>
               <td><%= event.title %></td>
               <td><%= event.description %></td>
-              <td><%= event.active_from %></td>
-              <td><%= event.active_to %></td>
+              <td><%= event.active_from.to_date %></td>
+              <td><%= event.active_to.to_date %></td>
               <td><%= event.created_by %></td>
               <td>
                 <%= link_to 'Show', event_path(event), class: "btn btn-outline-primary mx-2 btn-sm my-2" %>
