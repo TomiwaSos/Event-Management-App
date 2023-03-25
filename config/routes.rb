@@ -6,9 +6,13 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   post 'login', to: 'users#login'
   delete 'logout', to: 'users#logout'
-  resources :users , except: [:new]
+  resources :statuses
+  resources :users , except: [:new] do
+    get "account_settings", to: "users#account_settings"
+  end
+
   resources :events do
     resources :comments, except: [:index]
   end
-  resources :statuses
+
 end

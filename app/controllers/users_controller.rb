@@ -42,8 +42,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(params[:user])
-      redirect_to @user, :notice  => "Successfully updated user."
+    if @user.update(user_params)
+      redirect_to user_account_settings_path(current_user), :notice  => "Successfully updated user."
     else
       render :action => 'edit'
     end
@@ -53,6 +53,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     redirect_to users_url, :notice => "Successfully destroyed user."
+  end
+  
+  def account_settings
+    @user = User.find(params[:user_id])
   end
 
   private
