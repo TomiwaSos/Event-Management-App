@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    @events = Event.search(params[:q])
   end
 
   def new
@@ -43,7 +43,11 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :description,:status_id, :active_from,
+    params.require(:event).permit(:title, :description, :status_id, :active_from,
                                   :active_to, :created_by)
   end
+
+  # def event_search_params
+  #   params.require(:q).permit(:title_cont)
+  # end
 end

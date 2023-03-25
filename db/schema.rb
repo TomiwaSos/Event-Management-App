@@ -26,9 +26,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_24_194507) do
     t.integer "status_id"
     t.datetime "resolved_at"
     t.integer "resolved_by"
-    t.boolean "resolved"
+    t.boolean "resolved", default: false
     t.integer "created_by"
-    t.boolean "active"
+    t.boolean "active", default: false
     t.datetime "active_from"
     t.datetime "active_to"
     t.datetime "created_at", null: false

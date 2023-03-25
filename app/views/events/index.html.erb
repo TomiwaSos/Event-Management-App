@@ -1,40 +1,99 @@
 <h1 class="text-center mt-4"> Active events </h1>
 
 <div class="container">
+  <%= form_with url: events_path , method: :get, remote: true, scope: "q" do |f| %>
+    <div class="row justify-content-center mt-2">
+      <div class="col-10">
+        <div class="row">
+          <div class="col-3">
+            <%= f.label :title, "Title" %>
+            <%= f.text_field :title, class: "form-control" %>
+          </div>
+          <div class="col-3">
+            <%= f.label :description, "Description" %>
+            <%= f.text_field :description, class: "form-control" %>
+          </div>
+          <div class="col-3">
+            <%= f.label :active_from, "Active From" %>
+            <%= f.date_field :active_from, class: "form-control" %>
+          </div>
+          <div class="col-3">
+            <%= f.label :active_to, "Active To" %>
+            <%= f.date_field :active_to, class: "form-control" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-10">
+        <div class="row">
+          <div class="col-3">
+            <%= f.label :created_by, "Author" %>
+            <%= f.select(
+              :created_by,
+              options_for_select( User.all.collect {|a| [a.username, a.id]}),
+              {include_blank: true},
+              {class: "form-control"}
+            )%>
+          </div>
+          <div class="col-3">
+            <%= f.label :status_id, "Status" %>
+            <%= f.select(
+              :status_id,
+              options_for_select( Status.all.collect {|a| [a.name, a.id]}),
+              {include_blank: true},
+              {class: "form-control"}
+            )%>
+          </div>
+          <div class="col-3">
+            <%= f.label :created_at, "Created At" %>
+            <%= f.date_field :created_at, class: "form-control" %>
+          </div>
+          <div class="col-3">
+            <%= f.label :resolved, "Resolved" %>
+            <%= f.select(
+              :resolved,
+               options_for_select([['True', 1], ['False',0]]),
+              {include_blank: true},
+              {class: "form-control"}
+            )%>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-10">
+        <div class="row">
+          <div class="col-3">
+            <%= f.label :active, "Active" %>
+            <%= f.select(
+              :active,
+              options_for_select([['True', 1], ['False',0]]),
+              {include_blank: true},
+              {class: "form-control"}
+            )%>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+
+    <div class="col-12">
+      <div class="row justify-content-center">
+        <%= link_to 'Reset', events_path, class: "btn btn-outline-secondary mx-2 btn-sm my-2 col-3" %>
+        <%= f.submit "Search", class: "btn btn-outline-primary mx-2 btn-sm my-2 col-3" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>
+
+<br>
+
+<div class="container">
   <div class="row justify-content-end">
     <%= link_to 'New Event', new_event_path, class: "btn btn-outline-primary mx-2 btn-sm my-2 col-1" %>
   </div>
-
-  <div class="row justify-content-center">
-    <div class="col-10">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Description</th>
-            <th scope="col">Active From</th>
-            <th scope="col">Active To</th>
-            <th scope="col">Created By</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @events.each do |event| %>
-            <tr>
-              <td><%= event.title %></td>
-              <td><%= event.description %></td>
-              <td><%= event.active_from.to_date %></td>
-              <td><%= event.active_to.to_date %></td>
-              <td><%= event.created_by %></td>
-              <td>
-                <%= link_to 'Show', event_path(event), class: "btn btn-outline-primary mx-2 btn-sm my-2" %>
-                <%= link_to 'Edit', edit_event_path(event), class: "btn btn-outline-primary mx-2 btn-sm my-2" %>
-                <%=  button_to 'Destroy', event_path(event), method: :delete,  data: {confirm: 'Are you sure?'}, class: "btn btn-outline-danger mx-2 btn-sm my-2" %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <%= render "events/partials/events_table", events: @events %>
 </div>

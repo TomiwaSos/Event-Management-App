@@ -20,4 +20,19 @@ class Event < ApplicationRecord
   def status
     Status.find(status_id).name
   end
+
+  def self.search(search)
+    if search.present?
+      results = []
+      search.keys.each do |key|
+        results << where("#{key} LIKE ?", "%#{search[key]}%").uniq if search[key].present?
+      end
+      results = results.flat_map(&:itself).uniq
+
+    else
+      results = where("")
+    end
+
+    results
+  end
 end

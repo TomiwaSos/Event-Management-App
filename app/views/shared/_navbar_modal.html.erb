@@ -9,9 +9,6 @@
         <%= link_to 'Home', root_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Resolved Event</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="https://www.iomart.com/">Website</a>
       </li>
       <li class="nav-item">
@@ -21,7 +18,7 @@
         <a class="nav-link" href="https://support.melbourne.co.uk/">Support</a>
       </li>
       <li class="nav-item">
-        <% if current_user.present? %>
+        <% if logged_in? %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <%= User.find(current_user.id).username %>
