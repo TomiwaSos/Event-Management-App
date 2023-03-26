@@ -1,6 +1,4 @@
 # README
-
-1. Once you have pulled the repository locally change run git checkout sqllite
-2. run bundle
-3. run rake db:create, rake db:migrate
-4. rails s
+1. run bundle
+2. run rake db:create, rake db:migrate
+3. rails s
