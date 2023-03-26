@@ -1,10 +1,12 @@
 class StatusesController < ApplicationController
+  before_action :require_user
+  before_action :set_status, only: [:show, :edit, :update, :destroy]
+
   def index
     @statuses = Status.all
   end
   
   def show
-    @status = Status.find(params[:id])
   end
   
   def new
@@ -21,11 +23,9 @@ class StatusesController < ApplicationController
   end
   
   def edit
-    @status = Status.find(params[:id])
   end
   
   def update
-    @status = Status.find(params[:id])
     if @status.update(status_params)
     redirect_to @status, notice: "Successfully updated status."
     else
@@ -34,7 +34,6 @@ class StatusesController < ApplicationController
   end
   
   def destroy
-    @status = Status.find(params[:id])
     @status.destroy
     redirect_to statuses_url, notice: "Successfully destroyed status."
   end
@@ -43,5 +42,9 @@ class StatusesController < ApplicationController
   
   def status_params
     params.require(:status).permit(:name, :colour)
+  end
+
+  def set_status
+    @status = Status.find(params[:id])
   end
 end
