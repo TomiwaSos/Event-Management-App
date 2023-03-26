@@ -1,11 +1,9 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: %i[show edit update destroy]
 
-  def index
-  end
+  def index; end
 
-  def show
-  end
+  def show; end
 
   def new
     @user = User.new
@@ -14,17 +12,17 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to users_path, notice: "Successfully created user."
+      redirect_to users_path, notice: 'Successfully created user.'
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  def login     
+  def login
     user = User.find_by(email: params[:email].downcase)
     if user && user.authenticate(params[:password])
-        session[:user_id] = user.id
-        redirect_to root_path
+      session[:user_id] = user.id
+      redirect_to root_path
     else
       flash.alert = 'There was something wrong with your log in details'
       render 'index'
@@ -36,22 +34,21 @@ class UsersController < ApplicationController
     redirect_to root_path, notice: 'Logged out'
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @user.update(user_params)
-      redirect_to root_path, notice: "Successfully updated user."
+      redirect_to root_path, notice: 'Successfully updated user.'
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
   def destroy
     @user.destroy
-    redirect_to users_url, notice: "Successfully destroyed user."
+    redirect_to users_url, notice: 'Successfully destroyed user.'
   end
-  
+
   def account_settings
     @user = User.find(params[:user_id])
   end

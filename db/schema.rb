@@ -10,48 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_26_011914) do
+ActiveRecord::Schema[7.0].define(version: 20_230_326_011_914) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "comments", force: :cascade do |t|
-    t.integer "event_id"
-    t.text "description"
-    t.integer "author_id"
-    t.integer "status_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "resolved", default: false
+  create_table 'comments', force: :cascade do |t|
+    t.integer 'event_id'
+    t.text 'description'
+    t.integer 'author_id'
+    t.integer 'status_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.boolean 'resolved', default: false
   end
 
-  create_table "events", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.integer "status_id"
-    t.datetime "resolved_at"
-    t.integer "resolved_by"
-    t.boolean "resolved", default: false
-    t.integer "created_by"
-    t.boolean "active", default: false
-    t.datetime "active_from"
-    t.datetime "active_to"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'events', force: :cascade do |t|
+    t.string 'title'
+    t.text 'description'
+    t.integer 'status_id'
+    t.datetime 'resolved_at'
+    t.integer 'resolved_by'
+    t.boolean 'resolved', default: false
+    t.integer 'created_by'
+    t.boolean 'active', default: false
+    t.datetime 'active_from'
+    t.datetime 'active_to'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "statuses", force: :cascade do |t|
-    t.string "name"
-    t.string "colour"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'statuses', force: :cascade do |t|
+    t.string 'name'
+    t.string 'colour'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "username"
-    t.string "email"
-    t.string "password_digest"
+  create_table 'users', force: :cascade do |t|
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'username'
+    t.string 'email'
+    t.string 'password_digest'
   end
-
 end

@@ -14,7 +14,7 @@ class Event < ApplicationRecord
 
   def check_if_active
     today = Date.today
-    if (active_from.to_date..active_to.to_date) === today
+    if (active_from.to_date..active_to.to_date).include?(today)
       update_column(:active, true)
     else
       update_column(:active, false)
@@ -38,17 +38,17 @@ class Event < ApplicationRecord
       results = results.flat_map(&:itself).uniq
 
     else
-      results = where("")
+      results = where('')
     end
 
     results
   end
 
   def is_resolved?
-    resolved ? "Yes": "No"
+    resolved ? 'Yes' : 'No'
   end
 
   def is_active?
-    active ? "Yes": "No"
+    active ? 'Yes' : 'No'
   end
 end
