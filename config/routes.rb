@@ -7,10 +7,7 @@ Rails.application.routes.draw do
   post 'login', to: 'users#login'
   delete 'logout', to: 'users#logout'
   resources :statuses
-  resources :users , except: [:new] do
-    get "account_settings", to: "users#account_settings"
-  end
-
+  resources :users , except: [:new]
   resources :events do
     resources :comments, except: [:index]
   end

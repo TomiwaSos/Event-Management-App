@@ -42,7 +42,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to user_account_settings_path(current_user), :notice  => "Successfully updated user."
+      redirect_to root_path, :notice  => "Successfully updated user."
     else
       render :action => 'edit'
     end
