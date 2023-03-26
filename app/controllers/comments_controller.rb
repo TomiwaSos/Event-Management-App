@@ -13,8 +13,7 @@ class CommentsController < ApplicationController
     if @comment.save
       @comment.event.update(status_id: @comment.status_id, resolved: @comment.resolved)
       @comment.event.update(resolved_at: Date.today, resolved_by: comment_params[:author_id]) if @comment.resolved == true
-      flash[:notice] = "Comment was successfully created"
-      redirect_to event_path(params[:event_id])
+      redirect_to event_path(params[:event_id]), notice: "Comment was successfully created"
     else
       render 'new'
     end
@@ -25,12 +24,12 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    redirect_to event_path(params[:event_id]), :notice => "Successfully destroyed comment."
+    redirect_to event_path(params[:event_id]), notice: "Successfully destroyed comment."
   end
 
   def update
     if @comment.update(comment_params)
-      redirect_to event_path(params[:event_id]), :notice  => "Successfully updated user."
+      redirect_to event_path(params[:event_id]), notice: "Successfully updated user."
     else
       render :action => 'edit'
     end
@@ -47,8 +46,8 @@ class CommentsController < ApplicationController
 
   def require_same_user
     if current_user != @comment.user
-     flash[:alert] = 'you can only edit or delete your own comments'
-     redirect_to @event
+      flash.alert = 'you can only edit or delete your own comments'
+      redirect_to @event
     end
   end
 end

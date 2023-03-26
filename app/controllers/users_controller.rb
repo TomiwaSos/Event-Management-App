@@ -26,15 +26,14 @@ class UsersController < ApplicationController
         session[:user_id] = user.id
         redirect_to root_path
     else
-        flash.now[:alert] = 'There was something wrong with your log in details'
-        render 'new'
+      flash.alert = 'There was something wrong with your log in details'
+      render 'index'
     end
   end
 
   def logout
     session[:user_id] = nil
-    flash[:notice] = 'Logged out'
-    redirect_to root_path
+    redirect_to root_path, notice: 'Logged out'
   end
 
   def edit
@@ -42,7 +41,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to root_path, :notice  => "Successfully updated user."
+      redirect_to root_path, notice: "Successfully updated user."
     else
       render :action => 'edit'
     end
@@ -50,7 +49,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_url, :notice => "Successfully destroyed user."
+    redirect_to users_url, notice: "Successfully destroyed user."
   end
   
   def account_settings

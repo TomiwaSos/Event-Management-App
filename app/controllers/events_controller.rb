@@ -14,8 +14,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save
-      flash[:notice] = "Event was successfully created"
-      redirect_to events_path
+      redirect_to events_path, notice: "Event was successfully created"
     else
       render 'new'
     end
@@ -52,7 +51,7 @@ class EventsController < ApplicationController
 
   def require_same_user
     if current_user != @event.user
-     flash[:alert] = 'you can only edit or delete your own events'
+    flash.alert = 'you can only edit or delete your own events'
      redirect_to @event
     end
   end
