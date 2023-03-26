@@ -35,7 +35,8 @@ class Event < ApplicationRecord
       search.keys.each do |key|
         results << where("#{key} LIKE ?", "%#{search[key]}%").uniq if search[key].present?
       end
-      results = results.flat_map(&:itself).uniq
+      # results = results.flat_map(&:itself).uniq
+      results = results.flatten.uniq
 
     else
       results = where("")
