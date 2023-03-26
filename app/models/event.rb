@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   has_many :comments
-  belongs_to :user, foreign_key: 'created_by'
+  has_one :user, foreign_key: 'created_by'
   has_one :status, foreign_key: 'status_id'
 
   validates :title, presence: true, uniqueness: true
@@ -42,5 +42,13 @@ class Event < ApplicationRecord
     end
 
     results
+  end
+
+  def is_resolved?
+    resolved ? "Yes": "No"
+  end
+
+  def is_active?
+    active ? "Yes": "No"
   end
 end

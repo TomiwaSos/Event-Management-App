@@ -5,8 +5,10 @@
         <tr>
           <th scope="col">Title</th>
           <th scope="col">Description</th>
+          <th scope="col">Active</th>
           <th scope="col">Active From</th>
           <th scope="col">Active To</th>
+          <th scope="col">Resolved</th>
           <th scope="col">Created By</th>
           <th scope="col">Actions</th>
         </tr>
@@ -16,8 +18,10 @@
           <tr>
             <td><%= event.title %></td>
             <td><%= event.description %></td>
+            <td><%= event.is_active? %></td>
             <td><%= event.active_from.to_date %></td>
             <td><%= event.active_to.to_date %></td>
+            <td><%= event.is_resolved? %></td>
             <td><%= event.author %></td>
             <td>
               <%= link_to 'Show', event_path(event), class: "btn btn-outline-primary mx-2 btn-sm my-2" %>
