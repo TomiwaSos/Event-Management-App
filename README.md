@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+While deploying my code to heroku i experienced some issues with postgress which i would love to discuss later.
 
-Things you may want to cover:
+To view website go to this address:
+https://pacific-citadel-54250.herokuapp.com/
 
-* Ruby version
+To view the sqllite version follow these steps:
 
-* System dependencies
+1.run bundle
+2.run rake db:create, rake db:migrate
+3.rails s
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+If you need any help please feel free to get in contact with me
