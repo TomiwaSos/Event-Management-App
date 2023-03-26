@@ -18,8 +18,8 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-set :output, "log/cron_log.log"
+set :output, 'log/cron_log.log'
 
-every 1.minute do
-  rake "event_manager:check_activity"
+every 1.day, at: '12:00 am' do
+  rake 'event_manager:check_activity'
 end
