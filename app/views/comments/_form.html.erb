@@ -23,7 +23,7 @@
             <%= f.select(
               :status_id,
               options_for_select( Status.all.collect {|a| [a.name, a.id]}, Event.find_by(id: params[:event_id]).status_id),
-              {required: true, include_blank: true},
+              {include_blank: true},
               {class: "form-control"}
             )%>
           </div>
@@ -31,7 +31,7 @@
 
         <div class="form-group row mt-2">
           <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-            <%= f.check_box :resolved, class: "btn-check", id: "btncheck1" %>
+            <%= f.check_box :resolved, class: "btn-check", id: "btncheck1", checked: Event.find_by(id: params[:event_id]).resolved %>
             <label class="btn btn-outline-primary" for="btncheck1">Resolved ?</label>
           </div>
         </div>

@@ -34,8 +34,12 @@ class StatusesController < ApplicationController
   end
   
   def destroy
-    @status.destroy
-    redirect_to statuses_url, notice: "Successfully destroyed status."
+    if @status.destroy
+      redirect_to statuses_url, notice: "Successfully destroyed status."
+    else
+      @statuses = Status.all
+      render :index, status: :unprocessable_entity
+    end
   end
   
   private

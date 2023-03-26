@@ -31,8 +31,9 @@
             <%= f.select(
               :status_id,
               options_for_select( Status.all.collect {|a| [a.name, a.id]}, @event.status_id),
-              {required: true, include_blank: true},
-              {class: "form-control"}
+              {include_blank: true},
+              {class: "form-control",
+               required: true}
             )%>
           </div>
         </div>
@@ -42,7 +43,7 @@
             <%= f.label :active_from, class: "col-2 col-form-label" %>
           </div>
           <div class= "col-10">
-            <%= f.date_field :active_from, class: "w-25 form-control" %>
+            <%= f.date_field :active_from, class: "w-25 form-control", required: true %>
           </div>
         </div>
 
@@ -51,7 +52,7 @@
             <%= f.label :active_to, class: "col-2 col-form-label" %>
           </div>
           <div class= "col-10">
-            <%= f.date_field :active_to, class: "w-25 form-control" %>
+            <%= f.date_field :active_to, class: "w-25 form-control", required: true %>
           </div>
         </div>
 

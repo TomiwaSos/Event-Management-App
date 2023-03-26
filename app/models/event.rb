@@ -1,8 +1,16 @@
 class Event < ApplicationRecord
   has_many :comments
   belongs_to :user, foreign_key: 'created_by'
+  has_one :status, foreign_key: 'status_id'
+
+  validates :title, presence: true, uniqueness: true
+  validate :event_is_active_or_will_be
 
   after_save :check_if_active
+
+  def event_is_active_or_will_be
+    errors.add(:active_to, "date can't be in the past") if active_to.to_date < Date.today
+  end
 
   def check_if_active
     today = Date.today

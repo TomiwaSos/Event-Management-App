@@ -9,7 +9,6 @@ class CommentsController < ApplicationController
   end
 
   def create
-    byebug
     @comment = Comment.new(comment_params)
     if @comment.save
       @comment.event.update(status_id: @comment.status_id, resolved: @comment.resolved)

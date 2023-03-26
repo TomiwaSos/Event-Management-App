@@ -20,8 +20,9 @@
             <%= f.select(
               :colour,
               options_for_select([['Blue', "primary"], ['Red', "danger"], ['Yellow', "warning"], ['Grey', "primary"], ['Green', "success"]], @status.colour),
-              {required: true, include_blank: true},
-              {class: "form-control"}
+              {include_blank: true},
+              {class: "form-control",
+               required: true}
             )%>
           </div>
 
