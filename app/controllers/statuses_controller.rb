@@ -6,8 +6,6 @@ class StatusesController < ApplicationController
     @statuses = Status.all
   end
 
-  def show; end
-
   def new
     @status = Status.new
   end
@@ -25,7 +23,7 @@ class StatusesController < ApplicationController
 
   def update
     if @status.update(status_params)
-      redirect_to @status, notice: 'Successfully updated status.'
+      redirect_to status_path, notice: 'Successfully updated status.'
     else
       render :edit, status: :unprocessable_entity
     end
