@@ -7,8 +7,11 @@ https://pacific-citadel-54250.herokuapp.com/
 
 To view the sqllite version follow these steps:
 
-1.run bundle
-2.run rake db:create, rake db:migrate
-3.rails s
+Please not that this branch uses ruby version 3.1.2, if you use RVM(Ruby version manager) please run the following commands:
+1. rvm install 3.1.2
+2. rvm use 3.1.2
+3. run bundle
+4. run rake db:create, rake db:migrate
+5. rails s
 
 If you need any help please feel free to get in contact with me
