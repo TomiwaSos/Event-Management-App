@@ -5,6 +5,7 @@
         <tr>
           <th scope="col">Title</th>
           <th scope="col">Description</th>
+          <th scope="col">Description</th>
           <th scope="col">Active</th>
           <th scope="col">Active From</th>
           <th scope="col">Active To</th>
@@ -18,6 +19,7 @@
           <tr>
             <td><%= event.title %></td>
             <td><%= event.description %></td>
+            <td class='<%= "col-2 bg-#{event.status_colour} bg-opacity-10 border border-#{event.status_colour} border rounded-end"%>'.html_safe><%= event.description %></td>
             <td><%= event.is_active? %></td>
             <td><%= event.active_from.to_date %></td>
             <td><%= event.active_to.to_date %></td>

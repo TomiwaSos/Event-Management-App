@@ -29,6 +29,10 @@ class Event < ApplicationRecord
     Status.find(status_id).name
   end
 
+  def status_colour
+    Status.find(status_id).colour
+  end
+
   def self.search(search)
     if search.present?
       results = []
