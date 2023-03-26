@@ -12,19 +12,48 @@
 
   <div class="row mt-2">
     <div class= "col-2">
-      Description :
+      Status :
     </div>
     <div class= "col-10">
-      <%= Status.find(@event.status_id).name %>
+      <%= @event.status %>
     </div>
   </div>
+
+  <div class="row mt-2">
+    <div class= "col-2">
+      Resolved :
+    </div>
+    <div class= "col-10">
+      <%= @event.resolved ? "Yes" : "No" %>
+    </div>
+  </div>
+
+  <% if @event.resolved %>
+    <div class="row mt-2">
+      <div class= "col-2">
+        Resolved by :
+      </div>
+      <div class= "col-10">
+        <%= User.find(@event.resolved_by).username %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class= "col-2">
+        Resolved at :
+      </div>
+      <div class= "col-10">
+        <%= @event.resolved_at.to_date %>
+      </div>
+    </div>
+  <% end %>
 
   <div class="row mt-2">
     <div class= "col-2">
       Active from :
     </div>
     <div class= "col-10">
-      <%= @event.active_from %>
+      <%= @event.active_from.to_date %>
     </div>
   </div>
 
@@ -33,7 +62,7 @@
       Active To :
     </div>
     <div class= "col-10">
-      <%= @event.active_to %>
+      <%= @event.active_to.to_date %>
     </div>
   </div>
 
@@ -42,7 +71,7 @@
       Last Updated :
     </div>
     <div class= "col-10">
-      <%= @event.updated_at %>
+      <%= @event.updated_at.to_date %>
     </div>
   </div>
 </div>

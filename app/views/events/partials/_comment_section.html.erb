@@ -17,6 +17,15 @@
     </div>
   </div>
 
+  <div class="row mt-2">
+    <div class= "col-2">
+      resolved:
+    </div>
+    <div class= "col-10">
+      <%= comment.resolved ? "Yes" : "No"  %>
+    </div>
+  </div>
+
   <div class="row justify-content-center"> 
     <%= link_to 'Edit', edit_event_comment_path(event_id: params[:id], id: comment.id), class: "btn btn-outline-primary mx-2 btn-sm my-2 col-2" %>
     <%= button_to 'Destroy', event_comment_path(event_id: params[:id], id: comment.id), method: :delete,  data: {confirm: 'Are you sure?'}, class: "btn btn-outline-danger mx-2 btn-sm my-2 col-2" %>

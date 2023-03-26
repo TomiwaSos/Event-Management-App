@@ -9,8 +9,11 @@ class CommentsController < ApplicationController
   end
 
   def create
+    byebug
     @comment = Comment.new(comment_params)
     if @comment.save
+      @comment.event.update(status_id: @comment.status_id, resolved: @comment.resolved)
+      @comment.event.update(resolved_at: Date.today, resolved_by: comment_params[:author_id]) if @comment.resolved == true
       flash[:notice] = "Comment was successfully created"
       redirect_to event_path(params[:event_id])
     else
@@ -40,11 +43,10 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:event_id, :author_id, :description, :status_id)
+    params.require(:comment).permit(:event_id, :author_id, :description, :status_id, :resolved)
   end
 
   def require_same_user
-    byebug
     if current_user != @comment.user
      flash[:alert] = 'you can only edit or delete your own comments'
      redirect_to @event
